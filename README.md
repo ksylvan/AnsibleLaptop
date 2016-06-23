@@ -1,5 +1,5 @@
 # AnsibleLaptop
-Reproducible Developer Laptop configuration with ansible
+Reproducible Developer Laptop configuration with Ansible
 
 ## Motivation
 I want to demote my laptop from being a "pet" to being "cattle". I will not lovingly
