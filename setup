@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+
+RELEASE_NUM=24 # 24 is the default
+
+usage()
+{
+  echo "Usage: $0 -h (print this help message)"
+  echo "       $0 fedora_release (default to 24)"
+  exit 0
+}
+
+command_line_args()
+{
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -h*) usage;;
+      [0-9]*) RELEASE_NUM="$1"; shift;;
+      *) usage;;
+    esac
+  done
+}
+
+var_setup() {
+  RELEASE_FILE=/etc/redhat-release
+  RELEASE_EXPECTED="Fedora release ${RELEASE_NUM}"
+}
+
+ok_release()
+{
+  if [ ! -r  $RELEASE_FILE ]; then
+    echo "ERROR: No $RELEASE_FILE - Need to run on Fedora."
+    exit 1
+  fi
+  if grep -q "$RELEASE_EXPECTED" $RELEASE_FILE; then
+    return 0
+  else
+    echo "ERROR: Expected release: $RELEASE_EXPECTED"
+    exit 2
+  fi
+}
+
+setup_ansible()
+{
+  sudo dnf -y install ansible
+}
+
+check_ansible()
+{
+  if ansible all -i localhost, -c local -m ping; then
+    echo "SUCCESS: All is well."
+  else
+    echo "ERROR: Something is not set up right."
+  fi
+}
+
+command_line_args ${1+"$@"}
+var_setup
+ok_release
+setup_ansible
+check_ansible
