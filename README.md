@@ -25,4 +25,4 @@ Get another laptop, apply the minimal install, run the Ansible playbooks here an
 2. When installing, create your user account and assign it as an administrator (so that you can `sudo` to elevate permissions)
 3. Run this command:
 
-    curl -sL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
+    curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh

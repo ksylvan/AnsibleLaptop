@@ -5,21 +5,12 @@ dockerInstall()
 {
   # Extracted from https://docs.docker.com/engine/installation/linux/fedora/
   #
-  YUM_CFG=/etc/yum.repos.d/docker.repo
-
-  if [ ! -r ${YUM_CFG} ]; then
-    sudo tee ${YUM_CFG} <<-'EOF'
-    [dockerrepo]
-    name=Docker Repository
-    baseurl=https://yum.dockerproject.org/repo/main/fedora/$releasever/
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://yum.dockerproject.org/gpg
-EOF
-
-    sudo dnf -y install docker-engine
-    sudo systemctl start docker
-  fi
+  sudo dnf -y update
+  curl -fsSL https://get.docker.com/ | sh
+  sudo usermod -aG docker ${USER}
+  sudo dnf -y install docker-engine
+  sudo systemctl start docker
+  sudo systemctl enable docker
 }
 
 sshSetup()
@@ -34,8 +25,9 @@ sshSetup()
 
 ansibleTest()
 {
+  sudo dnf -y install python
   IMAGE=kayvan/ansible:2.1.0
-  docker run -v /home/ksylvan/.ssh:/root/.ssh --rm ${IMAGE} \
+  sudo docker run -v /home/ksylvan/.ssh:/root/.ssh --rm ${IMAGE} \
     ansible all -i 172.17.0.1, -m ping
 }
 
