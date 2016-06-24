@@ -19,10 +19,15 @@ I should be able to simply replace it and reproduce its setup quickly and with a
 With the above in place, if the laptop falls in a river, no big deal.
 Get another laptop, apply the minimal install, run the Ansible playbooks here and restore your user data.
 
-## Setup
+## Quick Start
 
-1. Install the latest version of Fedora Workstation [from here](https://getfedora.org/en/workstation/download/)
-2. When installing, create your user account and assign it as an administrator (so that you can `sudo` to elevate permissions)
-3. Run this command:
+* Install the latest version of Fedora Workstation [from here](https://getfedora.org/en/workstation/download/)
+* When installing, create your user account and assign it as an administrator (so that you can `sudo` to elevate permissions)
+3. Run this command.
 
-    curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
+        curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
+
+* The above will clone this repository on the laptop. Next, do this:
+
+        cd AnsibleLaptop
+        ./setup
