@@ -27,7 +27,7 @@ ansibleTest()
 {
   sudo dnf -y install python
   IMAGE=kayvan/ansible:2.1.0
-  sudo docker run -v /home/ksylvan/.ssh:/root/.ssh --rm ${IMAGE} \
+  sudo docker run -v ${HOME}/.ssh:/root/.ssh --rm ${IMAGE} \
     ansible all -i 172.17.0.1, -m ping
 }
 
