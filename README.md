@@ -23,7 +23,7 @@ Get another laptop, apply the minimal install, run the Ansible playbooks here an
 
 * Install the latest version of Fedora Workstation [from here](https://getfedora.org/en/workstation/download/)
 * When installing, create your user account and assign it as an administrator (so that you can `sudo` to elevate permissions)
-3. Run this command.
+* Run this command.
 
         curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
 
