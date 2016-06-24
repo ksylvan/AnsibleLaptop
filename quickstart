@@ -9,8 +9,10 @@ if [ ! -d ${REPO_NAME} ]; then
   cd ${HOME}
   git clone ${REPO_URL}
   cd ${REPO_NAME}
-
-  ./setup
 else
   echo "${REPO_NAME} repository already exists."
+  cd ${REPO_NAME}
+  git pull
 fi
+echo ""
+echo "Change directory to ${REPO_NAME} and run ./setup"

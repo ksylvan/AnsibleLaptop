@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 
-
 dockerInstall()
 {
   # Extracted from https://docs.docker.com/engine/installation/linux/fedora/
