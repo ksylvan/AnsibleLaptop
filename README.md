@@ -15,8 +15,8 @@ system files or customization.
 2. Use containers as much as possible in preference to installing software on
 the host system.
 3. Use Ansible playbooks (stored in this repo) exclusively for all system level
-installs and configuration. 4. User files (/home) to be backed up to a cloud
-backup solution of your choice.
+installs and configuration.
+4. User files (/home) to be backed up to a cloud backup solution of your choice.
 
 ## The Goal
 
