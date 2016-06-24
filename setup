@@ -1,37 +1,30 @@
 #!/bin/sh
 #
-
-dockerInstall()
+# Setup script for AnsibleLaptop
+# This will only ensure that Ansible is installed and working.
+#
+exists()
 {
-  # Extracted from https://docs.docker.com/engine/installation/linux/fedora/
-  #
-  sudo dnf -y update
-  curl -fsSL https://get.docker.com/ | sh
-  sudo groupadd docker
-  sudo usermod -aG docker ${USER}
-  sudo dnf -y install docker-engine
-  sudo systemctl start docker
-  sudo systemctl enable docker
+  command -v "$1"
 }
 
-sshSetup()
+ansibleInstall()
 {
-  cd ${HOME}
-  if [ ! -d .ssh ]; then mkdir .ssh; fi
-  chcon -R -t user_ssh_home_t ~/.ssh
-  if [ ! -r .ssh/id_rsa ]; then
-    ssh-keygen -t rsa -N "" -f .ssh/id_rsa
+  if [ -z "$(exists ansible)" ]; then
+    sudo dnf install ansible
+  else
+    echo "WARNING: Ansible is already installed. Skipping install."
   fi
 }
 
 ansibleTest()
 {
-  sudo dnf -y install python
-  IMAGE=kayvan/ansible:2.1.0
-  sudo docker run -v ${HOME}/.ssh:/root/.ssh --rm ${IMAGE} \
-    ansible all -i 172.17.0.1, -m ping
+  if ansible all -i localhost, -c local -m ping; then
+    echo "SUCCESS: Ansible is working correctly against localhost."
+  else
+    echo "ERROR: Something is wrong with your setup."
+  fi
 }
 
-dockerInstall
-sshSetup
+ansibleInstall
 ansibleTest
