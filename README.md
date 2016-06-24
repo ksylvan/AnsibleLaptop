@@ -23,7 +23,6 @@ Get another laptop, apply the minimal install, run the Ansible playbooks here an
 
 1. Install the latest version of Fedora Workstation [from here](https://getfedora.org/en/workstation/download/)
 2. When installing, create your user account and assign it as an administrator (so that you can `sudo` to elevate permissions)
-3. Login, then use `git clone` to grab a local copy of this repository.
-4. Change directory into the new cloned directory and run the following command:
+3. Run this command:
 
-    ./setup
+    curl https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh

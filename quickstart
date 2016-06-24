@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+
+REPO_NAME=AnsibleLaptop
+REPO_URL=https://github.com/ksylvan/${REPO_NAME}
+
+if [ ! -d ${REPO_NAME} ]; then
+  echo "Setting up the ${REPO_NAME} repository..."
+  cd ${HOME}
+  git clone ${REPO_URL}
+  cd ${REPO_NAME}
+
+  ./setup
+else
+  echo "${REPO_NAME} repository already exists."
+fi

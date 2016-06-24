@@ -1,61 +1,45 @@
 #!/bin/sh
 #
 
-RELEASE_NUM=24 # 24 is the default
 
-usage()
+dockerInstall()
 {
-  echo "Usage: $0 -h (print this help message)"
-  echo "       $0 fedora_release (default to 24)"
-  exit 0
-}
+  # Extracted from https://docs.docker.com/engine/installation/linux/fedora/
+  #
+  YUM_CFG=/etc/yum.repos.d/docker.repo
 
-command_line_args()
-{
-  while [ $# -gt 0 ]; do
-    case "$1" in
-      -h*) usage;;
-      [0-9]*) RELEASE_NUM="$1"; shift;;
-      *) usage;;
-    esac
-  done
-}
+  if [ ! -r ${YUM_CFG} ]; then
+    sudo tee ${YUM_CFG} <<-'EOF'
+    [dockerrepo]
+    name=Docker Repository
+    baseurl=https://yum.dockerproject.org/repo/main/fedora/$releasever/
+    enabled=1
+    gpgcheck=1
+    gpgkey=https://yum.dockerproject.org/gpg
+EOF
 
-var_setup() {
-  RELEASE_FILE=/etc/redhat-release
-  RELEASE_EXPECTED="Fedora release ${RELEASE_NUM}"
-}
-
-ok_release()
-{
-  if [ ! -r  $RELEASE_FILE ]; then
-    echo "ERROR: No $RELEASE_FILE - Need to run on Fedora."
-    exit 1
-  fi
-  if grep -q "$RELEASE_EXPECTED" $RELEASE_FILE; then
-    return 0
-  else
-    echo "ERROR: Expected release: $RELEASE_EXPECTED"
-    exit 2
+    sudo dnf -y install docker-engine
+    sudo systemctl start docker
   fi
 }
 
-setup_ansible()
+sshSetup()
 {
-  sudo dnf -y install ansible
-}
-
-check_ansible()
-{
-  if ansible all -i localhost, -c local -m ping; then
-    echo "SUCCESS: All is well."
-  else
-    echo "ERROR: Something is not set up right."
+  cd ${HOME}
+  if [ ! -d .ssh ]; then mkdir .ssh; fi
+  chcon -R -t user_ssh_home_t ~/.ssh
+  if [ ! -r .ssh/id_rsa ]; then
+    ssh-keygen -t rsa -N "" -f .ssh/id_rsa
   fi
 }
 
-command_line_args ${1+"$@"}
-var_setup
-ok_release
-setup_ansible
-check_ansible
+ansibleTest()
+{
+  IMAGE=kayvan/ansible:2.1.0
+  docker run -v /home/ksylvan/.ssh:/root/.ssh --rm -it ${IMAGE} \
+    ansible all -i 172.17.0.1, -m ping
+}
+
+dockerInstall
+sshSetup
+ansibleTest
