@@ -36,7 +36,7 @@ sshSetup()
 ansibleTest()
 {
   IMAGE=kayvan/ansible:2.1.0
-  docker run -v /home/ksylvan/.ssh:/root/.ssh --rm -it ${IMAGE} \
+  docker run -v /home/ksylvan/.ssh:/root/.ssh --rm ${IMAGE} \
     ansible all -i 172.17.0.1, -m ping
 }
 
