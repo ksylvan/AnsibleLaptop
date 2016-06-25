@@ -9,7 +9,6 @@ a job, and if I lose it or a disk crashes, I should be able to simply replace it
 and reproduce its setup quickly and with a minimum of fuss.
 
 ## Principles
-
 1. No hand installing of software beyond the initial install or editing of
 system files or customization.
 2. Use containers as much as possible in preference to installing software on
@@ -19,22 +18,20 @@ installs and configuration.
 4. User files (/home) to be backed up to a cloud backup solution of your choice.
 
 ## The Goal
-
 With the above in place, if the laptop falls in a river, no big deal. Get
 another laptop, apply the minimal install, run the Ansible playbooks here and
 restore your user data.
 
 ## Quick Start
-
 * Install the latest version of Fedora Workstation
 [from here](https://getfedora.org/en/workstation/download/)
 * When installing, create your user account and assign it as an administrator
 (so you can `sudo` to elevate permissions)
 * Run this command.
 
-        curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
+      curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
 
 * The above will clone this repository on the laptop. Next, do this:
 
-        cd AnsibleLaptop
-        ./setup
+      cd AnsibleLaptop
+      ./setup
