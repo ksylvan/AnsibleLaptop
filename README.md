@@ -31,7 +31,5 @@ restore your user data.
 
       curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/quickstart | sh
 
-* The above will clone this repository on the laptop. Next, do this:
-
-      cd AnsibleLaptop
-      ./setup
+* The above will clone this repository on the laptop. Follow the instructions
+that the script prints on the screen to proceed.
