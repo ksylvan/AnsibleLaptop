@@ -37,6 +37,6 @@ ansibleTest()
   fi
 }
 
-sudoersFile
+sudoersSetup
 ansibleInstall
 ansibleTest
