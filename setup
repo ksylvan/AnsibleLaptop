@@ -13,6 +13,9 @@ sudoersSetup()
   sudoersFile=/etc/sudoers.d/ansible
   if [ ! -r ${sudoersFile} ]; then
     echo 'ansible ALL=(ALL) NOPASSWD: ALL' | sudo tee ${sudoersFile}
+    echo "User ansible can now sudo without password."
+  else
+    echo "The ${sudoersFile} is already set up. Skipping."
   fi
 }
 
