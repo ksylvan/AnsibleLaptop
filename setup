@@ -12,13 +12,14 @@ sudoersSetup()
 {
   sudoersFile=/etc/sudoers.d/ansible
   tmpFile=/tmp/x$$
-  if [ ! -r ${sudoersFile} ]; then
-    echo 'ansible ALL=(ALL) NOPASSWD: ALL' > ${tmpFile}
-    sudo cp ${tmpFile} ${sudoersFile}; rm -f ${tmpFile}
-    echo "User ansible can now sudo without password."
+  if sudo -n cp /dev/null ${tmpFile} > /dev/null 2>&1; then
+    echo "User ansible can already sudo without password. Skipping setup."
   else
-    echo "The ${sudoersFile} is already set up. Skipping."
+    echo 'ansible ALL=(ALL) NOPASSWD: ALL' > ${tmpFile}
+    sudo cp ${tmpFile} ${sudoersFile}
+    echo "User ansible can now sudo without password."
   fi
+  rm -f ${tmpFile}
 }
 
 ansibleInstall()
