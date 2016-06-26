@@ -19,7 +19,7 @@ sudoersSetup()
     sudo cp ${tmpFile} ${sudoersFile}
     echo "User ansible can now sudo without password."
   fi
-  rm -f ${tmpFile}
+  sudo rm -f ${tmpFile}
 }
 
 ansibleInstall()
