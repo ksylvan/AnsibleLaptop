@@ -11,8 +11,10 @@ exists()
 sudoersSetup()
 {
   sudoersFile=/etc/sudoers.d/ansible
+  tmpFile=/tmp/x$$
   if [ ! -r ${sudoersFile} ]; then
-    echo 'ansible ALL=(ALL) NOPASSWD: ALL' | sudo tee ${sudoersFile}
+    echo 'ansible ALL=(ALL) NOPASSWD: ALL' > ${tmpFile}
+    sudo cp ${tmpFile} ${sudoersFile}; rm -f ${tmpFile}
     echo "User ansible can now sudo without password."
   else
     echo "The ${sudoersFile} is already set up. Skipping."
@@ -22,7 +24,7 @@ sudoersSetup()
 ansibleInstall()
 {
   if [ -z "$(exists ansible)" ]; then
-    sudo dnf install ansible
+    sudo dnf -y install ansible
   else
     echo "WARNING: Ansible is already installed. Skipping install."
   fi
