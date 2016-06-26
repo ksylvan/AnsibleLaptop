@@ -8,6 +8,14 @@ exists()
   command -v "$1"
 }
 
+sudoersSetup()
+{
+  sudoersFile=/etc/sudoers.d/ansible
+  if [ ! -r ${sudoersFile} ]; then
+    echo 'ansible ALL=(ALL) NOPASSWD: ALL' | sudo tee ${sudoersFile}
+  fi
+}
+
 ansibleInstall()
 {
   if [ -z "$(exists ansible)" ]; then
@@ -26,5 +34,6 @@ ansibleTest()
   fi
 }
 
+sudoersFile
 ansibleInstall
 ansibleTest
