@@ -25,11 +25,15 @@ restore your user data.
 ## Quick Start
 * Install the latest version of Fedora Workstation
 [from here](https://getfedora.org/en/workstation/download/)
-* When installing, create an ansible user account and assign it as
-an administrator (so the ansible user can `sudo` to elevate permissions)
-* Log in as the `ansible` user and run this command:
+* During the installation:
+  * Set your root password.
+  * Create an `ansible` user account
+  * Assign it a user and group ID of 10000 (click on `Advanced...` )
+  * Make it an administrator (so the ansible user can `sudo` to elevate
+    permissions).
+* Once the installation completes, log in as the `ansible` user
+and run this command:
 
       curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/bootstrap | sh
 
-* The above will clone this repository on the laptop. Follow the instructions
-that the script prints on the screen to proceed.
+* Follow the instructions that the script prints on the screen to proceed.
