@@ -15,6 +15,6 @@ else
   git pull
 fi
 echo ""
-echo "Change directory to ${REPO_NAME} and run ./setup (run the following)"
+echo "Change directory to ${REPO_NAME} and run the following:"
 echo ""
-echo "cd ${REPO_NAME}; ./setup"
+echo "cd ${REPO_NAME}; ./bootstrap/ansible"

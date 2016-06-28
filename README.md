@@ -9,8 +9,7 @@ a job, and if I lose it or a disk crashes, I should be able to simply replace it
 and reproduce its setup quickly and with a minimum of fuss.
 
 ## Principles
-1. No hand installing of software beyond the initial install or editing of
-system files or customization.
+1. No hand installing of software, editing system files, or customization.
 2. Use containers as much as possible in preference to installing software on
 the host system.
 3. Use Ansible playbooks (stored in this repo) exclusively for all system level
@@ -29,11 +28,11 @@ restore your user data.
   * Set your root password.
   * Create an `ansible` user account
   * Assign it a user and group ID of 10000 (click on `Advanced...` )
-  * Make it an administrator (so the ansible user can `sudo` to elevate
+  * Make it an administrator (so the `ansible` user can `sudo` to elevate
     permissions).
 * Once the installation completes, log in as the `ansible` user
 and run this command:
 
-      curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/bootstrap | sh
+      curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/bootstrap/clone | sh
 
 * Follow the instructions that the script prints on the screen to proceed.

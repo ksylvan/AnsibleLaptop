@@ -3,6 +3,8 @@
 # Setup script for AnsibleLaptop
 # This will only ensure that Ansible is installed and working.
 #
+cd $(dirname $0)/..
+
 exists()
 {
   command -v "$1"
@@ -33,7 +35,7 @@ ansibleInstall()
 
 ansibleTest()
 {
-  if ansible all -i localhost, -c local -m ping; then
+  if ansible laptop -m ping; then
     echo "SUCCESS: Ansible is working correctly against localhost."
   else
     echo "ERROR: Something is wrong with your setup."
