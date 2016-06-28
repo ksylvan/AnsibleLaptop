@@ -1,4 +1,4 @@
 ---
-hosts: laptop
-roles:
-  - docker
+- hosts: laptop
+  roles:
+    - docker
