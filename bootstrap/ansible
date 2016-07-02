@@ -3,7 +3,9 @@
 # Setup script for AnsibleLaptop
 # This will only ensure that Ansible is installed and working.
 #
+# Must be run by an
 cd $(dirname $0)/..
+myUser=${USER}
 
 exists()
 {
@@ -12,16 +14,26 @@ exists()
 
 sudoersSetup()
 {
-  sudoersFile=/etc/sudoers.d/ansible
+  sudoersFile=/etc/sudoers.d/${myUser}
   tmpFile=/tmp/x$$
-  if sudo -n cp /dev/null ${tmpFile} > /dev/null 2>&1; then
-    echo "User ansible can already sudo without password. Skipping setup."
+  echo "${myUser} ALL=(ALL) NOPASSWD: ALL" > ${tmpFile}
+  sudo cp ${tmpFile} ${sudoersFile}
+  if [ $? -eq 0 ]; then
+    echo "User ${myUser} can now sudo without password."
+    sudo rm -f ${tmpFile}
   else
-    echo 'ansible ALL=(ALL) NOPASSWD: ALL' > ${tmpFile}
-    sudo cp ${tmpFile} ${sudoersFile}
-    echo "User ansible can now sudo without password."
+    echo "ERROR: Need elevated permissions for user ${myUser}. Exiting."
+    exit $?
   fi
-  sudo rm -f ${tmpFile}
+}
+
+ansibleCanSudo()
+{
+  if sudo -n id -u > /dev/null 2>&1; then
+    echo "User ${myUser} can already sudo without password. Skipping setup."
+  else
+    sudoersSetup
+  fi
 }
 
 ansibleInstall()
@@ -42,6 +54,6 @@ ansibleTest()
   fi
 }
 
-sudoersSetup
+ansibleCanSudo
 ansibleInstall
 ansibleTest
