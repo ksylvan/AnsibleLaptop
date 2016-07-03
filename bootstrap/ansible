@@ -3,7 +3,7 @@
 # Setup script for AnsibleLaptop
 # This will only ensure that Ansible is installed and working.
 #
-# Must be run by an
+
 cd $(dirname $0)/..
 myUser=${USER}
 
@@ -39,7 +39,7 @@ ansibleCanSudo()
 ansibleInstall()
 {
   if [ -z "$(exists ansible)" ]; then
-    sudo dnf -y install ansible python2-dnf
+    sudo dnf -y install ansible python2-dnf libselinux-python
   else
     echo "WARNING: Ansible is already installed. Skipping install."
   fi
