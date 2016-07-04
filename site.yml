@@ -3,4 +3,4 @@
   become: true
 
   roles:
-    - { role: ksylvan.docker, docker_selinux: permissive }
+    - role: ksylvan.docker
