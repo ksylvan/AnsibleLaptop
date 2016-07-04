@@ -4,6 +4,9 @@
 # This will only ensure that Ansible is installed and working.
 #
 
+REPO_NAME=AnsibleLaptop
+REPO_URL=https://github.com/ksylvan/${REPO_NAME}
+
 myUser=${USER}
 
 exists()
@@ -57,6 +60,13 @@ ansibleCanSudo
 ansibleInstall
 ansibleTest
 
-
 cd $(dirname $0)/..
 ansible-galaxy install -p roles -r requirements.yml
+
+echo "Set up a group_vars/all file as outlined in ${REPO_URL}"
+echo ""
+echo "Once everything is set up, run ansible-playbook:"
+echo ""
+echo "    ansible-playbook site.yml"
+echo ""
+echo "Reboot when that completes."

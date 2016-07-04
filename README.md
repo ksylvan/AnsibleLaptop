@@ -26,13 +26,23 @@ restore your user data.
 [from here](https://getfedora.org/en/workstation/download/)
 * During the installation:
   * Set your root password.
-  * Create an `ansible` user account
-  * Assign it a user and group ID of 10000 (click on `Advanced...` )
-  * Make it an administrator (so the `ansible` user can `sudo` to elevate
-    permissions).
-* Once the installation completes, log in as the `ansible` user
+  * Create your own user account and make it an administrator account (so
+    you can `sudo` and ansible commands can elevate permissions)
+* Once the installation completes, log in as the user you just created
 and run this command:
 
       curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/bootstrap/clone | sh
 
 * Follow the instructions that the script prints on the screen to proceed.
+
+## Variables
+
+You can create a local `group_vars/` directory with a file `all` to set
+the following variables:
+
+| Name | Explanation |
+|----------------|-----------------------------------------|
+| docker_selinux | For Fedora 24, set this to `permissive` |
+
+The `group_vars/*` files are ignored by git, so your setup will not
+be over-written by subsequent updates.
