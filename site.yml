@@ -2,10 +2,5 @@
 - hosts: laptop
   become: true
 
-  tasks:
-    - name: run ansible galaxy
-      command: ansible-galaxy install -p roles -r requirements.yml
-      changed_when: false
-
   roles:
     - { role: ksylvan.docker, docker_selinux: permissive }

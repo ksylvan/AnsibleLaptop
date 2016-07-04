@@ -4,7 +4,6 @@
 # This will only ensure that Ansible is installed and working.
 #
 
-cd $(dirname $0)/..
 myUser=${USER}
 
 exists()
@@ -57,3 +56,7 @@ ansibleTest()
 ansibleCanSudo
 ansibleInstall
 ansibleTest
+
+
+cd $(dirname $0)/..
+ansible-galaxy install -p roles -r requirements.yml
