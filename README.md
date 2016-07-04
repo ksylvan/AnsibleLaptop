@@ -49,6 +49,15 @@ new `${HOME}/.ansible_laptop.yml` with variables you can set:
 The `.ansible_laptop.yml` file contains the customizations and can be
 backend up and restored onto a new machine to recreate the setup.
 
+The `my_packages` list can contain package names (as recognized by the `dnf`
+command), or URLs to packages, for example, to install `sshfs`, `emacs` and
+the `atom` editor, you can use this snippet:
+
+    my_packages:
+      - sshfs
+      - emacs
+      - https://github.com/atom/atom/releases/download/v1.8.0/atom.x86_64.rpm
+
 ## Demo
 
 Using this on a newly instantiated Fedora workstation install:
