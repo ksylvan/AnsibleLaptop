@@ -51,4 +51,4 @@ be over-written by subsequent updates.
 
 Using this on a newly instantiated Fedora 24 system:
 
-[![asciicast](https://asciinema.org/a/77324.png)](https://asciinema.org/a/77324?speed=4&autoplay=1&loop=1)
+[![asciicast](https://asciinema.org/a/77324.png?speed=4&autoplay=4&loop=1)](https://asciinema.org/a/77324?speed=4&autoplay=1&loop=1)
