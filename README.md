@@ -51,6 +51,6 @@ backend up and restored onto a new machine to recreate the setup.
 
 ## Demo
 
-Using this on a newly instantiated Fedora 24 system:
+Using this on a newly instantiated Fedora workstation install:
 
 [![asciicast](https://asciinema.org/a/78697.png "AnsibleLaptop Demo")](https://asciinema.org/a/78697?speed=4&autoplay=1)
