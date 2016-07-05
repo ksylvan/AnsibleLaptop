@@ -53,4 +53,4 @@ backend up and restored onto a new machine to recreate the setup.
 
 Using this on a newly instantiated Fedora 24 system:
 
-[![asciicast](https://asciinema.org/a/77324.png "AnsibleLaptop Demo")](https://asciinema.org/a/77324?speed=4&autoplay=1)
+[![asciicast](https://asciinema.org/a/78697.png "AnsibleLaptop Demo")](https://asciinema.org/a/78697?speed=4&autoplay=1)
