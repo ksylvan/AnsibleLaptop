@@ -37,15 +37,17 @@ and run this command:
 
 ## Variables
 
-You can create a local `group_vars/` directory with a file `all` to set
-the following variables:
+Once you run the `clone` script and follow the instructions, you will have
+an `AnsibleLaptop` directory in your home directory and a
+new `${HOME}/.ansible_laptop.yml` with variables you can set:
 
 | Name | Explanation |
 |----------------|-----------------------------------------|
 | docker_selinux | For Fedora 24, set this to `permissive` |
+| my_packages | List of packages to install |
 
-The `group_vars/*` files are ignored by git, so your setup will not
-be over-written by subsequent updates.
+The `.ansible_laptop.yml` file contains the customizations and can be
+backend up and restored onto a new machine to recreate the setup.
 
 ## Demo
 

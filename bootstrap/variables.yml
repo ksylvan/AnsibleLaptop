@@ -1,0 +1,11 @@
+---
+# Uncomment the below line on Fedora 24
+#
+# See https://github.com/docker/docker/issues/23981
+#
+# docker_selinux: permissive
+#
+
+# Add packages to the list below
+my_packages:
+  - sshfs

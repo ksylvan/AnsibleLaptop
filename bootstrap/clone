@@ -17,4 +17,4 @@ fi
 echo ""
 echo "Change directory to ${REPO_NAME} and run the following:"
 echo ""
-echo "cd ${REPO_NAME}; ./bootstrap/ansible"
+echo "cd ${REPO_NAME}; ./bootstrap/setup"

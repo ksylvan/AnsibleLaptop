@@ -56,17 +56,34 @@ ansibleTest()
   fi
 }
 
+ansibleGalaxySetup()
+{
+  ansible-galaxy install -p roles -r requirements.yml
+}
+
+ansibleVariables()
+{
+  VARS_FILE=${HOME}/.ansible_laptop.yml
+  if [ -r ${VARS_FILE} ]; then
+    echo ""
+    echo "Variables file ${VARS_FILE} already exists. Skipping."
+  else
+    echo ""
+    cp bootstrap/variables.yml ${VARS_FILE}
+    echo ""
+    echo "New file ${VARS_FILE} with variables to set up."
+    echo "Edit the file and then run ansible-playbook:"
+    echo ""
+    echo "    ansible-playbook site.yml"
+    echo ""
+    echo "Reboot when that completes."
+  fi
+}
+
+cd $(dirname $0)/..
+
 ansibleCanSudo
 ansibleInstall
 ansibleTest
-
-cd $(dirname $0)/..
-ansible-galaxy install -p roles -r requirements.yml
-
-echo "Set up a group_vars/all file as outlined in ${REPO_URL}"
-echo ""
-echo "Once everything is set up, run ansible-playbook:"
-echo ""
-echo "    ansible-playbook site.yml"
-echo ""
-echo "Reboot when that completes."
+ansibleGalaxySetup
+ansibleVariables

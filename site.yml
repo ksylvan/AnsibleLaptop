@@ -1,6 +1,26 @@
 ---
-- hosts: laptop
-  become: true
+- name: Customiaztion
+  hosts: laptop
+  gather_facts: false
+  tasks:
+    - name: Read in variables
+      include_vars: '{{item}}'
+      with_first_found:
+        - ../../../.ansible_laptop.yml
+        - ../../.ansible_laptop.yml
+        - ../.ansible_laptop.yml
 
+- name: Install my packages
+  hosts: laptop
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Install applications
+      dnf: name={{item}} state=latest
+      with_items: ['{{my_packages}}']
+
+- name: Install latest Docker
+  hosts: laptop
+  become: true
   roles:
     - role: ksylvan.docker
