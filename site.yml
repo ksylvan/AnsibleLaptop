@@ -1,5 +1,5 @@
 ---
-- name: Customiaztion
+- name: Customization
   hosts: laptop
   gather_facts: false
   tasks:
