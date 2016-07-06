@@ -15,7 +15,7 @@
   gather_facts: false
   become: true
   tasks:
-    - name: My Package List
+    - name: Debug: my package list
       debug: var=my_packages
     - name: Install applications
       dnf: name={{item}} state=latest
