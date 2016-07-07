@@ -1,10 +1,13 @@
 ---
-# Uncomment the below line on Fedora 24
+# Uncomment below line for Fedora 24
 #
 # See https://github.com/docker/docker/issues/23981
 #
 # docker_selinux: permissive
+
+# Use the testing repo (bleeding edge) Docker - Necessary for Fedora 24
 #
+# docker_testing: true
 
 # Add packages to the list below
 my_packages:

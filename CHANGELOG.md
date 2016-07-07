@@ -1,5 +1,8 @@
 # Change Log for AnsibleLaptop
 
+## 1.0.2
+- Document `docker_testing` boolean used by the docker role.
+
 ## 1.0.1
 - Re-vanped the way the playbook uses variables.
 - Renamed bootstrap/ansible -> bootstrap/setup

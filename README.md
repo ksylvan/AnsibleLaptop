@@ -44,6 +44,7 @@ new `${HOME}/.ansible_laptop.yml` with variables you can set:
 | Name | Explanation |
 |----------------|-----------------------------------------|
 | docker_selinux | For Fedora 24, set this to `permissive` |
+| docker_testing | For Fedora 24, set this to True |
 | my_packages | List of packages to install |
 
 The `.ansible_laptop.yml` file contains the customizations and can be
