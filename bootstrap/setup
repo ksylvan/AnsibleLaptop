@@ -71,13 +71,12 @@ ansibleVariables()
     echo ""
     cp bootstrap/variables.yml ${VARS_FILE}
     echo ""
-    echo "New file ${VARS_FILE} with variables to set up."
-    echo "Edit the file and then run ansible-playbook:"
-    echo ""
-    echo "    ansible-playbook site.yml"
-    echo ""
-    echo "Reboot when that completes."
+    echo "New variables file ${VARS_FILE} set up."
   fi
+  echo "Edit the variables file and then run ansible-playbook:"
+  echo ""
+  echo "    ansible-playbook site.yml"
+  echo ""
 }
 
 cd $(dirname $0)/..

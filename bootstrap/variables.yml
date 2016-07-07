@@ -1,11 +1,13 @@
 ---
-# Uncomment below line for Fedora 24
+# Docker on Fedora 24 has SELinux problems
 #
 # See https://github.com/docker/docker/issues/23981
+# The ksylvan.docker role works around this.
+# Alternatively, you can uncomment the line below.
 #
 # docker_selinux: permissive
 
-# Use the testing repo (bleeding edge) Docker - Necessary for Fedora 24
+# Use the testing repo (bleeding edge) Docker (sometimes needed)
 #
 # docker_testing: true
 
