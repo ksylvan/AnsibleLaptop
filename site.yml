@@ -10,16 +10,33 @@
         - ../../.ansible_laptop.yml
         - ../.ansible_laptop.yml
 
+- name: Add extra repositories
+  hosts: laptop
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Install from my_yum_repos
+      yum_repository:
+        name: '{{ item.key }}'
+        description: '{{ item.value.description }}'
+        baseurl: '{{ item.value.baseurl }}'
+        enabled: '{{ item.value.enabled | default(1) }}'
+        gpgcheck: '{{ item.value.gpgcheck | default(1) }}'
+        gpgkey: '{{ item.value.gpgkey }}'
+        params: '{{ item.value }}'
+      with_dict: '{{ my_yum_repos | default({}) }}'
+
 - name: Install my packages
   hosts: laptop
   gather_facts: false
   become: true
   tasks:
-    - name: 'Debug: my package list'
-      debug: var=my_packages
-    - name: Install applications
-      dnf: name={{item}} state=latest
-      with_items: ['{{my_packages}}']
+    - name: Install packages by name
+      dnf: name={{ item }} state=latest
+      with_items: '{{ my_packages.names | default([]) }}'
+    - name: Install packages by urls
+      dnf: name={{ item }} state=present
+      with_items: '{{ my_packages.urls | default([]) }}'
 
 - name: Install latest Docker
   hosts: laptop

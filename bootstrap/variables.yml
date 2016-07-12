@@ -11,6 +11,20 @@
 #
 # docker_testing: true
 
+# Extra yum repositories (add extra ones below)
+my_yum_repos:
+  google-chrome:
+    description: 'Google Chrome Repository'
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: https://dl-ssl.google.com/linux/linux_signing_key.pub
+
 # Add packages to the list below
 my_packages:
-  - sshfs
+  names:
+    - sshfs
+    - screen
+    - google-chrome-stable
+  urls:
+    - https://github.com/atom/atom/releases/download/v1.8.0/atom.x86_64.rpm

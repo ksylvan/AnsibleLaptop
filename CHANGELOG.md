@@ -1,10 +1,15 @@
 # Change Log for AnsibleLaptop
 
+## 1.0.3
+- Break out packages by name (state=latest), versus URLs (state=present)
+- Add `my_yum_repos` variable to enable adding extra repositories (google
+  chrome, etc)
+
 ## 1.0.2
 - Document `docker_testing` boolean used by the docker role.
 
 ## 1.0.1
-- Re-vanped the way the playbook uses variables.
+- Revamped the way the playbook uses variables.
 - Renamed bootstrap/ansible -> bootstrap/setup
 - setup script creates ~/.ansible_laptop.yml if it does not exist.
 

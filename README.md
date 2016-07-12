@@ -45,22 +45,48 @@ new `${HOME}/.ansible_laptop.yml` with variables you can set:
 |----------------|-----------------------------------------|
 | docker_selinux | For Fedora 24, set this to `permissive` |
 | docker_testing | For Fedora 24, set this to True |
+| my_yum_repos | List of extra repositories |
 | my_packages | List of packages to install |
 
 The `.ansible_laptop.yml` file contains the customizations and can be
-backend up and restored onto a new machine to recreate the setup.
+backed up and restored onto a new machine to recreate the setup.
 
-The `my_packages` list can contain package names (as recognized by the `dnf`
-command), or URLs to packages, for example, to install `sshfs`, `emacs` and
-the `atom` editor, you can use this snippet:
+The `my_yum_repos` contains information for setting up external repositories
+(such as google-chrome). For example:
+
+    my_yum_repos:
+      google-chrome:
+        description: 'Google Chrome Repository'
+        baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+        enabled: 1
+        gpgcheck: 1
+        gpgkey: https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+The above will create a file `/etc/yum.repos.d/google-chrome.repo` which
+enables the standard google chrome yum repository.
+
+The `my_packages` hash contains a list of names (as recognized by the `dnf`
+command), or URLs to files, for example, to install `sshfs`, `screen`,
+`google-chrome-stable` and the `atom` editor, use the following snippet.
 
     my_packages:
-      - sshfs
-      - emacs
-      - https://github.com/atom/atom/releases/download/v1.8.0/atom.x86_64.rpm
+      names:
+        - sshfs
+        - screen
+        - google-chrome-stable
+      urls:
+        - https://github.com/atom/atom/releases/download/v1.8.0/atom.x86_64.rpm
+
+Note that the above  assumes that we already installed the google chrome yum
+repo via the `my_yum_repos` declaration.
+
+Special Tip: Since the packages specified by their download links are
+downloaded each time the playbook runs, I recommend commenting out the `urls`
+part of the `my_packages` hash after the packages have been installed the first
+time, to speed up subsequent runs.
 
 ## Demo
 
-Using this on a newly instantiated Fedora workstation install:
+Using this on a newly instantiated Fedora 24 workstation install:
 
 [![asciicast](https://asciinema.org/a/78697.png "AnsibleLaptop Demo")](https://asciinema.org/a/78697?speed=4&autoplay=1)
