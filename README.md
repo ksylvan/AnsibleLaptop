@@ -48,11 +48,8 @@ new `${HOME}/.ansible_laptop.yml` with variables you can set:
 | my_yum_repos | List of extra repositories |
 | my_packages | List of packages to install |
 
-The `.ansible_laptop.yml` file contains the customizations and can be
-backed up and restored onto a new machine to recreate the setup.
-
-The `my_yum_repos` contains information for setting up external repositories
-(such as google-chrome). For example:
+The variable `my_yum_repos` contains information for setting up external
+repositories (such as google-chrome). For example:
 
     my_yum_repos:
       google-chrome:
@@ -77,7 +74,7 @@ command), or URLs to files, for example, to install `sshfs`, `screen`,
       urls:
         - https://github.com/atom/atom/releases/download/v1.8.0/atom.x86_64.rpm
 
-Note that the above  assumes that we already installed the google chrome yum
+Note that the above  assumes that we already installed the google-chrome yum
 repo via the `my_yum_repos` declaration.
 
 Special Tip: Since the packages specified by their download links are
@@ -87,11 +84,10 @@ time, to speed up subsequent runs.
 
 ## The Local Play Book
 
-In addition to the variables above, you can have your own `local.yml` which
-is read and executed only if it exists.
-
-This file can be used to do other system modifications; use this to add users,
-change web configuration files, modify LDAP or other server setup, etc.
+In addition to the variables above, you can have your own `local.yml` which is
+read and executed only if it exists. This file captures other system
+modification. Use it to add users, change web configuration files, modify LDAP
+or other server setup, etc.
 
 The point is to **never** modify your setup without the aid of Ansible.
 The `local.yml` file allows you to capture decisions and changes you make

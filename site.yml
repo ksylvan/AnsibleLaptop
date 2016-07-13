@@ -48,7 +48,7 @@
   gather_facts: false
   tasks:
     - name: Determine if local playbook exists
-      stat: path=local.yml
+      local_action: stat path=local.yml
       register: st
 
 - include: local.yml
