@@ -31,7 +31,7 @@ restore your user data.
 * Once the installation completes, log in as the user you just created
 and run this command:
 
-      curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/bootstrap/clone | sh
+        curl -fsSL https://github.com/ksylvan/AnsibleLaptop/raw/master/bootstrap/clone | sh
 
 * Follow the instructions that the script prints on the screen to proceed.
 
