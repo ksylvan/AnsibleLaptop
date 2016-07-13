@@ -85,8 +85,12 @@ downloaded each time the playbook runs, I recommend commenting out the `urls`
 part of the `my_packages` hash after the packages have been installed the first
 time, to speed up subsequent runs.
 
-## Demo
+## Demos
 
-Using this on a newly instantiated Fedora 24 workstation install:
+On a newly instantiated Fedora 24 workstation install:
 
-[![asciicast](https://asciinema.org/a/78697.png "AnsibleLaptop Demo")](https://asciinema.org/a/78697?speed=4&autoplay=1)
+[![asciicast](https://asciinema.org/a/79421.png "AnsibleLaptop Demo")](https://asciinema.org/a/79421?speed=8&autoplay=1)
+
+Adding a 3rd party package by URL:
+
+[![asciicast](https://asciinema.org/a/79374.png "AnsibleLaptop Demo")](https://asciinema.org/a/79374?speed=6&autoplay=1)
