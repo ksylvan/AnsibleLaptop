@@ -1,5 +1,9 @@
 # Change Log for AnsibleLaptop
 
+## 1.0.4
+- Conditionally run local customization playbook
+- Add documentation about `local.yml`
+
 ## 1.0.3
 - Break out packages by name (state=latest), versus URLs (state=present)
 - Add `my_yum_repos` variable to enable adding extra repositories (google

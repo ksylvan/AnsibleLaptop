@@ -85,6 +85,42 @@ downloaded each time the playbook runs, I recommend commenting out the `urls`
 part of the `my_packages` hash after the packages have been installed the first
 time, to speed up subsequent runs.
 
+## The Local Play Book
+
+In addition to the variables above, you can have your own `local.yml` which
+is read and executed only if it exists.
+
+This file can be used to do other system modifications; use this to add users,
+change web configuration files, modify LDAP or other server setup, etc.
+
+The point is to **never** modify your setup without the aid of Ansible.
+The `local.yml` file allows you to capture decisions and changes you make
+that are not already covered by the AnsibleLaptop process.
+
+NOTE: The `local.yml` file is ignored by git, so if you clone my repository,
+be sure to back it up so you can restore/recreate your setup at will.
+
+An example `local.yml`:
+
+    ---
+    - name: Local Tasks
+      hosts: laptop
+      become: true
+      tasks:
+        - name: Hello!
+          debug: msg='Here I am! LOCAL playbook'
+        - name: 'SELinux open VPN config'
+          seboolean: name=openvpn_can_network_connect state=yes
+
+## Backing up and restoring your configuration
+
+The files which contain all the information needed to save and restore your
+setup are:
+
+- `~/.ansible_laptop.yml` - The variables that
+  determine which yum repos and packages are installed on your machine.
+- `~/AnsibleLaptop/local.yml` - Other customizations you created.
+
 ## Demos
 
 On a newly instantiated Fedora 24 workstation install:

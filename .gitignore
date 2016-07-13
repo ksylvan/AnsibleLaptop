@@ -1,2 +1,3 @@
 group_vars/*
 site.retry
+local.yml

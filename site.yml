@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Read in variables
-      include_vars: '{{item}}'
+      include_vars: '{{ item }}'
       with_first_found:
         - ../../../.ansible_laptop.yml
         - ../../.ansible_laptop.yml
@@ -43,3 +43,13 @@
   become: true
   roles:
     - role: ksylvan.docker
+
+- hosts: laptop
+  gather_facts: false
+  tasks:
+    - name: Determine if local playbook exists
+      stat: path=local.yml
+      register: st
+
+- include: local.yml
+  when: st.stat.exists
