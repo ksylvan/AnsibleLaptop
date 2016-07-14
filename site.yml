@@ -49,7 +49,7 @@
   tasks:
     - name: Determine if local playbook exists
       local_action: stat path=local.yml
-      register: st
+      register: local_yml_st
 
 - include: local.yml
-  when: st.stat.exists
+  when: local_yml_st.stat.exists
