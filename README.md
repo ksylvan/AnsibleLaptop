@@ -39,7 +39,7 @@ and run this command:
 
 Once you run the `clone` script and follow the instructions, you will have
 an `AnsibleLaptop` directory in your home directory and a
-new `${HOME}/.ansible_laptop.yml` with variables you can set:
+new `${HOME}/.ansible_laptop/setup.yml` with variables you can set:
 
 | Name | Explanation |
 |----------------|-----------------------------------------|
@@ -93,9 +93,6 @@ The point is to **never** modify your setup without the aid of Ansible.
 The `local.yml` file allows you to capture decisions and changes you make
 that are not already covered by the AnsibleLaptop process.
 
-NOTE: The `local.yml` file is ignored by git, so if you clone my repository,
-be sure to back it up so you can restore/recreate your setup at will.
-
 An example `local.yml`:
 
     ---
@@ -113,9 +110,9 @@ An example `local.yml`:
 The files which contain all the information needed to save and restore your
 setup are:
 
-- `~/.ansible_laptop.yml` - The variables that
+- `~/.ansible_laptop/setup.yml` - The variables that
   determine which yum repos and packages are installed on your machine.
-- `~/AnsibleLaptop/local.yml` - Other customizations you created.
+- `~/.ansible_laptop/local.yml` - Other customizations you created.
 
 ## Demos
 

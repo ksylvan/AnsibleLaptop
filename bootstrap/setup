@@ -6,6 +6,7 @@
 
 REPO_NAME=AnsibleLaptop
 REPO_URL=https://github.com/ksylvan/${REPO_NAME}
+ANSIBLE_LAPTOP_CONF_DIR=${HOME}/.ansible_laptop
 
 myUser=${USER}
 
@@ -47,27 +48,16 @@ ansibleInstall()
   fi
 }
 
-ansibleTest()
-{
-  if ansible laptop -m ping; then
-    echo "SUCCESS: Ansible is working correctly against localhost."
-  else
-    echo "ERROR: Something is wrong with your setup."
-  fi
-}
-
-ansibleGalaxySetup()
-{
-  ansible-galaxy install -p roles -r requirements.yml
-}
-
 ansibleVariables()
 {
-  VARS_FILE=${HOME}/.ansible_laptop.yml
+  VARS_FILE=${ANSIBLE_LAPTOP_CONF_DIR}/setup.yml
   if [ -r ${VARS_FILE} ]; then
     echo ""
     echo "Variables file ${VARS_FILE} already exists. Skipping."
   else
+    if [ ! -d ${ANSIBLE_LAPTOP_CONF_DIR} ]; then
+      mkdir -p ${ANSIBLE_LAPTOP_CONF_DIR}
+    fi
     echo ""
     cp bootstrap/variables.yml ${VARS_FILE}
     echo ""
@@ -75,7 +65,7 @@ ansibleVariables()
   fi
   echo "Edit the variables file and then run ansible-playbook:"
   echo ""
-  echo "    ansible-playbook site.yml"
+  echo "    make"
   echo ""
 }
 
@@ -83,6 +73,5 @@ cd $(dirname $0)/..
 
 ansibleCanSudo
 ansibleInstall
-ansibleTest
-ansibleGalaxySetup
+make test
 ansibleVariables

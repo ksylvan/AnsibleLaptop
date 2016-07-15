@@ -1,5 +1,10 @@
 # Change Log for AnsibleLaptop
 
+## 1.0.5
+- Use `make` to simplify Ansible execution.
+- All config files now in ~/.ansible_laptop/ directory
+- User now can just backup that directory to save their setup.
+
 ## 1.0.4
 - Conditionally run local customization playbook
 - Add documentation about `local.yml`

@@ -1,14 +1,9 @@
 ---
 - name: Customization
   hosts: laptop
-  gather_facts: false
   tasks:
     - name: Read in variables
-      include_vars: '{{ item }}'
-      with_first_found:
-        - ../../../.ansible_laptop.yml
-        - ../../.ansible_laptop.yml
-        - ../.ansible_laptop.yml
+      include_vars: '{{ ansible_env.HOME }}/.ansible_laptop/setup.yml'
 
 - name: Add extra repositories
   hosts: laptop
@@ -44,12 +39,4 @@
   roles:
     - role: ksylvan.docker
 
-- hosts: laptop
-  gather_facts: false
-  tasks:
-    - name: Determine if local playbook exists
-      local_action: stat path=local.yml
-      register: local_yml_st
-
-- include: local.yml
-  when: local_yml_st.stat.exists
+- include: .local.yml
