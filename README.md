@@ -116,10 +116,8 @@ setup are:
 
 ## Demos
 
-On a newly instantiated Fedora 24 workstation install:
+- [On a newly instantiated Fedora 23
+workstation install:](https://asciinema.org/a/79932?speed=8&autoplay=1)
 
-[![asciicast](https://asciinema.org/a/79421.png "AnsibleLaptop Demo")](https://asciinema.org/a/79421?speed=8&autoplay=1)
-
-Adding a 3rd party package by URL:
-
-[![asciicast](https://asciinema.org/a/79374.png "AnsibleLaptop Demo")](https://asciinema.org/a/79374?speed=6&autoplay=1)
+- [On a Fedora 24 system, with
+SELinux changes for Docker](https://asciinema.org/a/79935?speed=8&autoplay=1)
