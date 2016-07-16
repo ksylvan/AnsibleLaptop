@@ -121,3 +121,6 @@ workstation install](https://asciinema.org/a/79932?speed=8&autoplay=1)
 
 - [On a Fedora 24 system, with
 SELinux changes for Docker](https://asciinema.org/a/79935?speed=8&autoplay=1)
+
+- [Using a local.yml playbook to
+manage ~/.bashrc](https://asciinema.org/a/79961?autoplay=1)
