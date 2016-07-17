@@ -1,7 +1,7 @@
 # Makefile for convenience
 #
 
-.PHONY: all deploy galaxy setup test
+.PHONY: all deploy galaxy setup test clean
 
 # Set DEBUG to -v, -vv, or -vvv for playbook debugging.
 #
@@ -37,3 +37,6 @@ test:
 	else \
 		echo "ERROR: Something is wrong with your setup."; \
 	fi
+
+clean:
+	@rm -rf ./cache

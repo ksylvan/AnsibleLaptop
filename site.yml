@@ -29,8 +29,18 @@
     - name: Install packages by name
       dnf: name={{ item }} state=latest
       with_items: '{{ my_packages.names | default([]) }}'
-    - name: Install packages by urls
-      dnf: name={{ item }} state=present
+    - name: Create cache directory if non-existent
+      file: path=./cache state=directory
+      become: false
+    - name: Download package urls to cache
+      uri:
+        url: '{{ item }}'
+        creates: ./cache/{{ item | basename }}
+        dest: ./cache/{{ item | basename }}
+      become: false
+      with_items: '{{ my_packages.urls | default([]) }}'
+    - name: Install cached packages
+      dnf: name=./cache/{{ item | basename }} state=present
       with_items: '{{ my_packages.urls | default([]) }}'
 
 - name: Install latest Docker

@@ -1,5 +1,9 @@
 # Change Log for AnsibleLaptop
 
+## 1.0.6
+- Cache the packages specified by URLs
+- Change documentation about the `urls` (no longer recommend commenting out)
+
 ## 1.0.5
 - Use `make` to simplify Ansible execution.
 - All config files now in ~/.ansible_laptop/ directory

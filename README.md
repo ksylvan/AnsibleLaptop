@@ -77,10 +77,10 @@ command), or URLs to files, for example, to install `sshfs`, `screen`,
 Note that the above  assumes that we already installed the google-chrome yum
 repo via the `my_yum_repos` declaration.
 
-Special Tip: Since the packages specified by their download links are
-downloaded each time the playbook runs, I recommend commenting out the `urls`
-part of the `my_packages` hash after the packages have been installed the first
-time, to speed up subsequent runs.
+Note: Packages specified by their download links are downloaded once and cached
+in the `./cache` directory. To cause a package to be re-downloaded, simply
+remove it from this directory. To purge this cache completely, simply remove
+this direcory, or run `make clean`
 
 ## The Local Play Book
 
