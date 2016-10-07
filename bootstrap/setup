@@ -42,7 +42,8 @@ ansibleCanSudo()
 ansibleInstall()
 {
   if [ -z "$(exists ansible)" ]; then
-    sudo dnf -y install ansible python2-dnf libselinux-python
+    sudo dnf -y install ansible python2-dnf libselinux-python \
+      policycoreutils-python-utils
   else
     echo "WARNING: Ansible is already installed. Skipping install."
   fi
