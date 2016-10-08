@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+#
+# Hack the Viber binary
+#
+import re
+import os
+import stat
+import sys
+
+filePath = '/opt/viber/Viber'
+newFile = filePath + '.new'
+oldFile = filePath + '.old'
+
+if os.access(oldFile, os.R_OK):
+    print('The file ', oldFile, ' already exists. Exiting.')
+    sys.exit(0)
+
+def increasePixelSize(data, increaseBy):
+    rep = lambda m: b'pixelSize: ' + bytes(str(int(m.group(1)) + increaseBy), 'ascii')
+    pat = re.compile(b'pixelSize: (\d\d)')
+    return pat.sub(rep, data)
+
+f = open(filePath, 'rb')
+o = open(filePath + '.new', 'wb')
+f_data = f.read()
+
+f_data = increasePixelSize(f_data, 12)
+
+o.write(f_data)
+
+st = os.stat(newFile)
+os.chmod(newFile, st.st_mode | stat.S_IEXEC)
+os.rename(filePath, oldFile)
+os.rename(newFile, filePath)
