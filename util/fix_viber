@@ -29,6 +29,6 @@ f_data = increasePixelSize(f_data, 12)
 o.write(f_data)
 
 st = os.stat(newFile)
-os.chmod(newFile, st.st_mode | stat.S_IEXEC)
+os.chmod(newFile, st.st_mode | 0o111)
 os.rename(filePath, oldFile)
 os.rename(newFile, filePath)
