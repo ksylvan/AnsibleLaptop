@@ -16,8 +16,8 @@ if os.access(oldFile, os.R_OK):
     sys.exit(0)
 
 def increasePixelSize(data, increaseBy):
-    rep = lambda m: b'pixelSize: ' + bytes(str(int(m.group(1)) + increaseBy), 'ascii')
-    pat = re.compile(b'pixelSize: (\d\d)')
+    rep = lambda m: m.group(1) + bytes(str(int(m.group(2)) + increaseBy), 'ascii')
+    pat = re.compile(b'([pP]ixelSize: )(\d\d)')
     return pat.sub(rep, data)
 
 f = open(filePath, 'rb')
